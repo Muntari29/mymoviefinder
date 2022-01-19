@@ -1,0 +1,19 @@
+@import './breakpoint';
+
+@mixin mobile {
+  @media (min-width: #{$MOBILE_S}) and (max-width: #{$MOBILE_L}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$MOBILE_L + 1px}) and (max-width: #{$LAPTOP - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$LAPTOP}) {
+    @content;
+  }
+}

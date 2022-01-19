@@ -1,0 +1,20 @@
+.dropdown {
+  position: absolute;
+  width: 100%;
+  top: 83px;
+  background-color: goldenrod;
+  ul {
+    background-color: blue;
+    list-style: none;
+    padding: 0px;
+    li {
+      text-align: left;
+      padding: 8px;
+      background-color: yellow;
+      a:hover {
+        text-decoration: underline;
+        color: red;
+      }
+    }
+  }
+}

@@ -1,6 +1,53 @@
+@import '../../utils/constants/_mixin.scss';
+
 .navbar {
-  position: sticky;
   top: 0;
   width: 100%;
-  background-color: blue;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  padding: 0 60px 0 60px;
+  background-color: gray;
+}
+
+.logo {
+  background-color: rgb(120, 120, 237);
+}
+
+.categories {
+  background-color: #b6fa96;
+  display: flex;
+  align-items: center;
+  padding-left: 2%;
+  font-size: 1.125rem;
+  gap: 3%;
+  flex-grow: 1;
+  :hover {
+    color: red;
+    text-decoration: underline red;
+  }
+}
+
+.developer {
+  display: flex;
+  align-items: center;
+  background-color: rgb(234, 144, 242);
+  position: relative;
+}
+
+.profileImage {
+  border-radius: 16px;
+}
+
+@include mobile {
+  .categories {
+    background-color: red;
+  }
+}
+@include tablet {
+  .categories {
+    background-color: royalblue;
+  }
 }
