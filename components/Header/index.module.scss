@@ -4,7 +4,7 @@
 .navbar {
   top: 0;
   width: 100%;
-  background-color: $TEXT_BLACK;
+  background-color: $BG_BLACK;
 }
 
 .container {
@@ -26,9 +26,11 @@
   font-size: 1.125rem;
   gap: 3%;
   flex-grow: 1;
+  color: $TEXT_BLUE;
   a:hover {
-    color: red;
-    text-decoration: underline red;
+    color: darken($TEXT_BLUE, 20%);
+    text-decoration: underline;
+    text-decoration-color: $WHITE;
   }
 }
 
@@ -61,8 +63,9 @@
     height: 45px;
   }
 }
-// @include tablet {
-//   .categories {
-//     background-color: royalblue;
-//   }
-// }
+
+@include tablet {
+  .categories {
+    font-size: 0.8rem;
+  }
+}

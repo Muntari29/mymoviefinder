@@ -1,10 +1,12 @@
 @import '../../utils/constants/_mixin.scss';
+@import '../../utils/constants/_colors.scss';
 
 .select {
   width: 120px;
+  font-size: 12px;
   padding: 5px;
-  border: 1px solid #999;
   border-radius: 8px;
+  color: $TEXT_BLUE;
   border: none;
   background: none;
   display: none;
@@ -17,7 +19,5 @@
 @include mobile {
   .select {
     display: block;
-    width: 100px;
-    font-size: 10px;
   }
 }
