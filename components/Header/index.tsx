@@ -3,6 +3,7 @@ import Image from 'next/image';
 import logo from '../../public/movieLogo.png';
 import profile from '../../public/muntari.png';
 import Dropdown from '../Dropdown';
+import SelectBox from '../SelectBox';
 import { useState } from 'react';
 
 const Header = () => {
@@ -16,8 +17,8 @@ const Header = () => {
             <Image
               src={logo}
               alt="Picture of the Logo."
-              width={80}
-              height={80}
+              width="100%"
+              height="100%"
             />
           </a>
         </div>
@@ -26,6 +27,7 @@ const Header = () => {
           <a href="#">시리즈</a>
           <a href="#">요즘 대세</a>
           <a href="#">내가 찜한 컨텐츠</a>
+          <SelectBox />
         </div>
         <div
           className={style.developer}
@@ -37,8 +39,8 @@ const Header = () => {
               className={style.profileImage}
               src={profile}
               alt="MUNTARI"
-              width={60}
-              height={60}
+              width="100%"
+              height="100%"
             />
           </a>
           {isHover ? <Dropdown /> : ''}
