@@ -1,9 +1,9 @@
 import style from './index.module.scss';
 import Image from 'next/image';
-import logo from '../../../public/movieLogo.png';
-import profile from '../../../public/muntari.png';
-import Dropdown from '../../Dropdown';
-import SelectBox from '../../SelectBox';
+import logo from '@/public/movieLogo.png';
+import profile from '@/public/muntari.png';
+import Dropdown from '@/components/Dropdown';
+import SelectBox from '@/components/SelectBox';
 import { useState } from 'react';
 
 const Header = () => {
