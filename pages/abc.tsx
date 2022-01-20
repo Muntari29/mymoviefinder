@@ -1,4 +1,4 @@
-import Layout from '../components/Layout';
+import Layout from '../components/domain/Layout';
 
 const abc = () => {
   return <Layout />;

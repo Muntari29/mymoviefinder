@@ -1,6 +1,6 @@
 import style from './index.module.scss';
 
-const SelectBox = () => {
+const SelectBox = (): JSX.Element => {
   return (
     <>
       <label htmlFor="home-select" />
