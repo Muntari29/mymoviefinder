@@ -1,7 +1,17 @@
+import { useEffect } from 'react';
 import Layout from '../components/domain/Layout';
+import { getSearchMovieData } from './api/movie';
 
-const abc = () => {
-  return <Layout />;
+const Abc = () => {
+  useEffect(() => {
+    getSearchMovieData('abcd');
+  }, []);
+
+  return (
+    <>
+      <Layout />
+    </>
+  );
 };
 
-export default abc;
+export default Abc;
