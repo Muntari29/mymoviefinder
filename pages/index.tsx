@@ -1,8 +1,8 @@
-import type { NextPage } from 'next';
-import Layout from '@/components/domain/Layout';
 import { getSearchMovieData } from './api/movie';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import MovieList from '@/components/MovieList';
+import Header from '@/components/domain/Header';
+import SearchInput from '@/components/SearchInput';
 
 const Home = ({
   initData,
@@ -10,8 +10,8 @@ const Home = ({
   console.log(initData);
   return (
     <>
-      <Layout />
-      <MovieList />
+      <Header />
+      <SearchInput />
     </>
   );
 };
