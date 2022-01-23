@@ -11,7 +11,10 @@ const Home = ({
   return (
     <>
       <Header />
-      <SearchInput />
+      <main>
+        <SearchInput />
+        <MovieList />
+      </main>
     </>
   );
 };
