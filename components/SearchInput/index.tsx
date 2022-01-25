@@ -3,7 +3,11 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import style from './index.module.scss';
 import MOVIELIST from './MOVIELIST';
 
-const SearchInput = (): JSX.Element => {
+interface ISearchInput {
+  onSubmit: (title: string) => {};
+}
+
+const SearchInput = ({ onSubmit }: ISearchInput): JSX.Element => {
   const [userInput, setUserInput] = useState('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -12,8 +16,9 @@ const SearchInput = (): JSX.Element => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { Search: data } = await getSearchMovieData(userInput);
+    onSubmit && onSubmit(userInput);
   };
+
   return (
     <>
       <div className={style.container}>
