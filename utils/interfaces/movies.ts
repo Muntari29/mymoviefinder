@@ -1,5 +1,5 @@
 export interface IMovieList {
-  getData: ImovieData[];
+  movieData: ImovieData[];
 }
 
 export interface ImovieData {

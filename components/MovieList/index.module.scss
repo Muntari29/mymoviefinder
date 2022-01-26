@@ -33,3 +33,18 @@
     }
   }
 }
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-top: 1px solid $TEXT_GRAY_LIGHT;
+  padding: 32px;
+  div {
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 8px;
+    color: $WHITE;
+  }
+}

@@ -1,12 +1,10 @@
 import style from './index.module.scss';
 import Image from 'next/image';
-import { useState } from 'react';
-import { ImovieData, IMovieList } from '@/utils/interfaces/movies';
+import empty from '@/public/empty.png';
+import { IMovieList } from '@/utils/interfaces/movies';
 
-const MovieList = ({ getData }: IMovieList): JSX.Element => {
-  const [movieData, setMovieData] = useState<ImovieData[]>(getData);
-  console.log(getData);
-  return (
+const MovieList = ({ movieData }: IMovieList): JSX.Element => {
+  return movieData ? (
     <main className={style.container}>
       {movieData.map(({ Title, Year, imdbID, Type, Poster }) => (
         <a href="#" key={imdbID}>
@@ -25,6 +23,11 @@ const MovieList = ({ getData }: IMovieList): JSX.Element => {
           </div>
         </a>
       ))}
+    </main>
+  ) : (
+    <main className={style.empty}>
+      <Image src={empty} alt="Empty Img..." width={80} height={80} />
+      <div>검색 결과가 없습니다.</div>
     </main>
   );
 };

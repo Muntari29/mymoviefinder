@@ -3,16 +3,16 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import MovieList from '@/components/MovieList';
 import Header from '@/components/domain/Header';
 import SearchInput from '@/components/SearchInput';
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 
 const Home = ({
   initData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>): JSX.Element => {
-  const [movieList, setMovieList] = useState<object[]>(initData);
+  const [movieList, setMovieList] = useState(initData);
 
   const onSubmit = async (title: string) => {
     const { Search: data } = await getSearchMovieData(title);
-    console.log(3, data);
+    setMovieList(data);
   };
 
   return (
@@ -20,7 +20,7 @@ const Home = ({
       <Header />
       <main>
         <SearchInput onSubmit={onSubmit} />
-        <MovieList getData={initData} />
+        <MovieList movieData={movieList} />
       </main>
     </>
   );
