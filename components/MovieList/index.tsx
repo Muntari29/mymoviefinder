@@ -1,5 +1,4 @@
 import style from './index.module.scss';
-import MOCK_DATA from './mock';
 import Image from 'next/image';
 import { useState } from 'react';
 import { ImovieData, IMovieList } from '@/utils/interfaces/movies';
