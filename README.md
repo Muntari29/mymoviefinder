@@ -9,6 +9,6 @@
 ### Node Version
 - v16.10.0 이상
 ### Application install
-`yarn or yanr install`
+`yarn or yarn install`
 ### Application run
 `yarn dev`
