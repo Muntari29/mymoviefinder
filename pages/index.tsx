@@ -20,7 +20,7 @@ const Home = ({
       <Header />
       <main>
         <SearchInput onSubmit={onSubmit} />
-        <MovieList />
+        <MovieList getData={initData} />
       </main>
     </>
   );

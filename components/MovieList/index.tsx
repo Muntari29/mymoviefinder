@@ -1,11 +1,15 @@
 import style from './index.module.scss';
 import MOCK_DATA from './mock';
 import Image from 'next/image';
+import { useState } from 'react';
+import { ImovieData, IMovieList } from '@/utils/interfaces/movies';
 
-const MovieList = (): JSX.Element => {
+const MovieList = ({ getData }: IMovieList): JSX.Element => {
+  const [movieData, setMovieData] = useState<ImovieData[]>(getData);
+  console.log(getData);
   return (
     <main className={style.container}>
-      {MOCK_DATA.map(({ Title, Year, imdbID, Type, Poster }) => (
+      {movieData.map(({ Title, Year, imdbID, Type, Poster }) => (
         <a href="#" key={imdbID}>
           <div className={style.item}>
             <Image
