@@ -4,18 +4,22 @@ import Header from '@/components/domain/Header';
 import SearchInput from '@/components/SearchInput';
 import { ImovieData } from '@/utils/interfaces/movies';
 import CommonView from '@/components/CommonView';
+import Spinner from '@/components/Spinner';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 const Home = (): JSX.Element => {
   const [movieList, setMovieList] = useState<ImovieData[] | null>(null);
   const [isInit, setIsInit] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const onSubmit = async (title: string) => {
+    setIsLoading(true);
     const { Search: data } = await getSearchMovieData(title);
     setIsInit(true);
     setMovieList(data);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -27,7 +31,9 @@ const Home = (): JSX.Element => {
       <Header />
       <main>
         <SearchInput onSubmit={onSubmit} />
-        {isInit ? (
+        {isLoading ? (
+          <Spinner />
+        ) : isInit ? (
           <MovieList movieData={movieList} />
         ) : (
           <CommonView width={80} height={80} text={'영화를 검색해주세요!'} />
