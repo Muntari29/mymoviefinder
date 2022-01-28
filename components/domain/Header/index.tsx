@@ -4,6 +4,7 @@ import logo from '@/public/movieLogo.png';
 import profile from '@/public/muntari.png';
 import Dropdown from '@/components/Dropdown';
 import SelectBox from '@/components/SelectBox';
+import Link from 'next/link';
 import { useState } from 'react';
 
 const Header = () => {
@@ -13,20 +14,20 @@ const Header = () => {
     <header className={style.navbar}>
       <div className={style.container}>
         <div className={style.logo}>
-          <a href="#">
+          <Link href="/" passHref>
             <Image
               src={logo}
               alt="Picture of the Logo."
               width="100%"
               height="100%"
             />
-          </a>
+          </Link>
         </div>
         <div className={style.categories}>
-          <a href="#">홈</a>
-          <a href="#">시리즈</a>
-          <a href="#">요즘 대세</a>
-          <a href="#">내가 찜한 컨텐츠</a>
+          <Link href="/">홈</Link>
+          <Link href="#">시리즈</Link>
+          <Link href="#">요즘 대세</Link>
+          <Link href="#">내가 찜한 컨텐츠</Link>
           <SelectBox />
         </div>
         <div
@@ -34,7 +35,7 @@ const Header = () => {
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
-          <a href="#">
+          <Link href="#" passHref>
             <Image
               className={style.profileImage}
               src={profile}
@@ -42,7 +43,7 @@ const Header = () => {
               width="100%"
               height="100%"
             />
-          </a>
+          </Link>
           {isHover ? <Dropdown /> : ''}
         </div>
       </div>
