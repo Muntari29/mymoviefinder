@@ -1,5 +1,5 @@
 import { getSearchMovieData } from './api/movie';
-import MovieList from '@/components/MovieList';
+import MovieList from '@/components/domain/MovieList';
 import Header from '@/components/domain/Header';
 import SearchInput from '@/components/SearchInput';
 import { ImovieData } from '@/utils/interfaces/movies';

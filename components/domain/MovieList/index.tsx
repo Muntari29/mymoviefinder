@@ -1,7 +1,7 @@
 import style from './index.module.scss';
 import Image from 'next/image';
 import empty from '@/public/empty.png';
-import CommonView from '../CommonView';
+import CommonView from '@/components/CommonView';
 import { IMovieList } from '@/utils/interfaces/movies';
 
 const MovieList = ({ movieData }: IMovieList): JSX.Element => {
