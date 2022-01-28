@@ -1,5 +1,5 @@
 export interface IMovieList {
-  movieData: ImovieData[];
+  movieData: ImovieData[] | null;
 }
 
 export interface ImovieData {

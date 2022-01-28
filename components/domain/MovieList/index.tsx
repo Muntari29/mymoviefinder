@@ -1,6 +1,7 @@
 import style from './index.module.scss';
 import Image from 'next/image';
 import empty from '@/public/empty.png';
+import CommonView from '@/components/CommonView';
 import { IMovieList } from '@/utils/interfaces/movies';
 
 const MovieList = ({ movieData }: IMovieList): JSX.Element => {
@@ -25,10 +26,12 @@ const MovieList = ({ movieData }: IMovieList): JSX.Element => {
       ))}
     </main>
   ) : (
-    <main className={style.empty}>
-      <Image src={empty} alt="Empty Img..." width={80} height={80} />
-      <div>검색 결과가 없습니다.</div>
-    </main>
+    <CommonView
+      src={empty}
+      width={80}
+      height={80}
+      text={'검색 결과가 없습니다.'}
+    />
   );
 };
 
