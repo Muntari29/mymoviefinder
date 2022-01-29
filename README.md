@@ -15,3 +15,9 @@
 `yarn or yarn install`
 ### Application run
 `yarn dev`
+
+<hr>
+
+## 배포 [![Netlify Status](https://api.netlify.com/api/v1/badges/be4889a8-c872-415a-ad6b-121f593bc22c/deploy-status)](https://app.netlify.com/sites/lucid-austin-f689bd/deploys)
+[배포 링크](https://lucid-austin-f689bd.netlify.app/)
+<br>
