@@ -8,7 +8,7 @@ export const getSearchMovieData = async (title: string, page: number = 1) => {
       url: `${API_END_POINT}?apikey=${API_KEY}&s=${title}&page=${page}`,
       method: 'GET',
     });
-    if (res.statusText === 'OK') return res.data;
+    if (res.status === 200) return res.data;
   } catch (e) {
     console.error(e);
   }
