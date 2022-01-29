@@ -7,6 +7,7 @@ import CommonView from '@/components/CommonView';
 import Spinner from '@/components/Spinner';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import MovieModal from '@/components/MovieModal';
 
 const Home = (): JSX.Element => {
   const [movieList, setMovieList] = useState<ImovieData[] | null>(null);
@@ -31,14 +32,15 @@ const Home = (): JSX.Element => {
       <Header />
       <main>
         <SearchInput onSubmit={onSubmit} />
-        {isLoading ? (
+        {/* {isLoading ? (
           <Spinner />
         ) : isInit ? (
           <MovieList movieData={movieList} />
         ) : (
           <CommonView width={80} height={80} text={'영화를 검색해주세요!'} />
-        )}
+        )} */}
       </main>
+      <MovieModal />
     </>
   );
 };

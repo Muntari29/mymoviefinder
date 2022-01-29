@@ -1,0 +1,23 @@
+@import '@/utils/constants/_colors.scss';
+@import '@/utils/constants/_mixin.scss';
+
+.mask {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.wrapper {
+  position: absolute;
+  width: 380px;
+  height: 580px;
+  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: coral;
+}
