@@ -10,17 +10,28 @@ import { useRouter } from 'next/router';
 import MovieModal from '@/components/MovieModal';
 
 const Home = (): JSX.Element => {
-  const [movieList, setMovieList] = useState<ImovieData[] | null>(null);
-  const [isInit, setIsInit] = useState(false);
+  const [seletedMovieId, setSeletedMovieId] = useState<string | null>(null);
+  const [movieData, setMovieData] = useState<ImovieData[] | null>(null);
+  const [isShowModal, setIsShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isInit, setIsInit] = useState(false);
   const router = useRouter();
 
   const onSubmit = async (title: string) => {
     setIsLoading(true);
     const { Search: data } = await getSearchMovieData(title);
     setIsInit(true);
-    setMovieList(data);
+    setMovieData(data);
     setIsLoading(false);
+  };
+
+  const onClick = (movieId: string) => {
+    setSeletedMovieId(movieId);
+    setIsShowModal(true);
+  };
+
+  const closedModal = () => {
+    setIsShowModal(false);
   };
 
   useEffect(() => {
@@ -32,15 +43,19 @@ const Home = (): JSX.Element => {
       <Header />
       <main>
         <SearchInput onSubmit={onSubmit} />
-        {/* {isLoading ? (
+        {isLoading ? (
           <Spinner />
         ) : isInit ? (
-          <MovieList movieData={movieList} />
+          <MovieList movieData={movieData} onClick={onClick} />
         ) : (
           <CommonView width={80} height={80} text={'영화를 검색해주세요!'} />
-        )} */}
+        )}
       </main>
-      <MovieModal />
+      {isShowModal && seletedMovieId ? (
+        <MovieModal onClose={closedModal} seletedMovieId={seletedMovieId} />
+      ) : (
+        ''
+      )}
     </>
   );
 };

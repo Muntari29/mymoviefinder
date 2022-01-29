@@ -3,26 +3,29 @@ import Image from 'next/image';
 import empty from '@/public/empty.png';
 import CommonView from '@/components/CommonView';
 import { IMovieList } from '@/utils/interfaces/movies';
+import Link from 'next/link';
 
-const MovieList = ({ movieData }: IMovieList): JSX.Element => {
+const MovieList = ({ movieData, onClick }: IMovieList): JSX.Element => {
   return movieData ? (
     <main className={style.container}>
       {movieData.map(({ Title, Year, imdbID, Type, Poster }) => (
-        <a href="#" key={imdbID}>
-          <div className={style.item}>
-            <Image
-              src={Poster}
-              alt="Image..."
-              width={300}
-              height={400}
-              objectFit="fill"
-            />
-            <div className={style.description}>
-              <div className={style.title}>{Title}</div>
-              <div className={style.year}>@{Year}</div>
+        <Link href="#" key={imdbID}>
+          <a>
+            <div className={style.item} onClick={() => onClick(imdbID)}>
+              <Image
+                src={Poster}
+                alt="Image..."
+                width={300}
+                height={400}
+                objectFit="fill"
+              />
+              <div className={style.description}>
+                <div className={style.title}>{Title}</div>
+                <div className={style.year}>@{Year}</div>
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
+        </Link>
       ))}
     </main>
   ) : (
