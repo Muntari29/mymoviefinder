@@ -45,13 +45,32 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
   return (
     <div className={style.mask}>
       {getOneMovieData && (
-        <div className={style.wrapper}>
-          <Image
-            src={getOneMovieData.Poster}
-            width={'100%'}
-            height={'100%'}
-            alt={'Poster...'}
-          />
+        <div className={style.container}>
+          <div className={style.section}>
+            <Image
+              src={getOneMovieData.Poster}
+              width="100%"
+              height="100%"
+              objectFit="contain"
+              layout="responsive"
+              alt={'Poster...'}
+            />
+            <div className={style.header}>
+              <div>{getOneMovieData.Title}</div>
+            </div>
+            <div className={style.body}>
+              <div>평점 : {getOneMovieData.imdbRating}</div>
+              <div className={style.actors}>
+                출연 : {getOneMovieData.Actors}
+              </div>
+              <div>상영일 : {getOneMovieData.Released}</div>
+              <div>상영시간 : {getOneMovieData.Runtime}</div>
+            </div>
+            <div className={style.footer}>
+              <div>줄거리</div>
+              <div>{getOneMovieData.Plot}</div>
+            </div>
+          </div>
         </div>
       )}
     </div>
