@@ -1,9 +1,8 @@
-import { getSearchMovieData } from '@/pages/api/movie';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import style from './index.module.scss';
-import MOVIELIST from './MOVIELIST';
 import { ISearchInput } from '@/utils/interfaces/search';
+import style from './index.module.scss';
 import { useRouter } from 'next/router';
+import MOVIELIST from './MOVIELIST';
 
 const SearchInput = ({ onSubmit }: ISearchInput): JSX.Element => {
   const [userInput, setUserInput] = useState('');

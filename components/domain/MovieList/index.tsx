@@ -1,8 +1,8 @@
-import style from './index.module.scss';
-import Image from 'next/image';
-import empty from '@/public/empty.png';
 import CommonView from '@/components/CommonView';
 import { IMovieList } from '@/utils/interfaces/movies';
+import style from './index.module.scss';
+import empty from '@/public/empty.png';
+import Image from 'next/image';
 
 const MovieList = ({ movieData, onClick }: IMovieList): JSX.Element => {
   return movieData ? (

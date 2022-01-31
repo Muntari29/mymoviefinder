@@ -1,8 +1,8 @@
-import { getDetailMovieData } from '@/pages/api/movie';
 import { IgetOneMovieData, IMovieModal } from '@/utils/interfaces/movies';
 import { useCallback, useEffect, useState } from 'react';
-import Image from 'next/image';
+import { getDetailMovieData } from '@/pages/api/movie';
 import style from './index.module.scss';
+import Image from 'next/image';
 
 const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
   const [getOneMovieData, setGetOneMovieData] =
@@ -24,7 +24,6 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
     const resizePosterUrl = posterArray.join('_');
     data.Poster = resizePosterUrl;
     setGetOneMovieData(data);
-    console.log(data);
   };
 
   // 추후 hook으로 분리하기.

@@ -1,11 +1,11 @@
-import style from './index.module.scss';
-import Image from 'next/image';
-import logo from '@/public/movieLogo.png';
-import profile from '@/public/muntari.png';
-import Dropdown from '@/components/Dropdown';
 import SelectBox from '@/components/SelectBox';
-import Link from 'next/link';
+import Dropdown from '@/components/Dropdown';
+import profile from '@/public/muntari.png';
+import logo from '@/public/movieLogo.png';
+import style from './index.module.scss';
 import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Header = () => {
   const [isHover, setIsHover] = useState(false);

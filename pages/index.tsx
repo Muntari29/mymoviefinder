@@ -1,13 +1,13 @@
-import { getSearchMovieData } from './api/movie';
-import MovieList from '@/components/domain/MovieList';
-import Header from '@/components/domain/Header';
-import SearchInput from '@/components/SearchInput';
 import { ImovieData } from '@/utils/interfaces/movies';
+import MovieList from '@/components/domain/MovieList';
+import SearchInput from '@/components/SearchInput';
 import CommonView from '@/components/CommonView';
-import Spinner from '@/components/Spinner';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import MovieModal from '@/components/MovieModal';
+import { getSearchMovieData } from './api/movie';
+import Header from '@/components/domain/Header';
+import { useEffect, useState } from 'react';
+import Spinner from '@/components/Spinner';
+import { useRouter } from 'next/router';
 
 const Home = (): JSX.Element => {
   const [seletedMovieId, setSeletedMovieId] = useState<string | null>(null);
