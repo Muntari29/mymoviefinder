@@ -1,5 +1,12 @@
 import { IgetOneMovieData, IMovieModal } from '@/utils/interfaces/movies';
-import { useCallback, useEffect, useState } from 'react';
+import {
+  MouseEventHandler,
+  MutableRefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { getDetailMovieData } from '@/pages/api/movie';
 import style from './index.module.scss';
 import Image from 'next/image';
@@ -26,6 +33,14 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
     setGetOneMovieData(data);
   };
 
+  const handlClickClosedModal: MouseEventHandler = useCallback(
+    (e) => {
+      const seletedId = (e.target as HTMLDivElement).id;
+      if (seletedId === 'mask') onClose();
+    },
+    [onClose]
+  );
+
   // 추후 hook으로 분리하기.
   const handleModal = useCallback(
     (e: KeyboardEvent) => {
@@ -42,7 +57,7 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
   }, [handleModal]);
 
   return (
-    <div className={style.mask}>
+    <div id="mask" className={style.mask} onClick={handlClickClosedModal}>
       {getOneMovieData && (
         <div className={style.container}>
           <div className={style.section}>
