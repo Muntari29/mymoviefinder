@@ -1,12 +1,5 @@
 import { IgetOneMovieData, IMovieModal } from '@/utils/interfaces/movies';
-import {
-  MouseEventHandler,
-  MutableRefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { MouseEventHandler, useCallback, useEffect, useState } from 'react';
 import { getDetailMovieData } from '@/pages/api/movie';
 import style from './index.module.scss';
 import Image from 'next/image';
