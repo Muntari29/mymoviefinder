@@ -1,7 +1,7 @@
+import { ICommonView } from '@/utils/interfaces/common';
+import movieLogo from '@/public/movieLogo.png';
 import style from './index.module.scss';
 import Image from 'next/image';
-import movieLogo from '@/public/movieLogo.png';
-import { ICommonView } from '@/utils/interfaces/common';
 
 const CommonView = ({
   src = movieLogo,

@@ -1,0 +1,54 @@
+@import '@/utils/constants/_colors.scss';
+@import '@/utils/constants/_mixin.scss';
+
+.mask {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.container {
+  position: absolute;
+  width: 380px;
+  height: 580px;
+  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: coral;
+}
+
+.section {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding: 16px;
+  background-color: $TEXT_GRAY_LIGHT;
+  box-shadow: 0 3px 6px 0 black;
+  .header {
+    width: 80%;
+    margin: 0 auto;
+    padding: 8px;
+    text-align: center;
+    font-size: 1.5rem;
+    word-break: break-word;
+    white-space: pre-line;
+  }
+  .body {
+    border-left: 6px solid $TEXT_BLUE;
+    padding: 8px;
+    .actors {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  .footer {
+    padding: 8px;
+    word-break: break-word;
+  }
+}
