@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0 60px 0 60px;
+  padding: 8px 54px 8px 54px;
 }
 
 .logo {
@@ -49,7 +49,7 @@
 
 @include mobile {
   .container {
-    padding: 0 32px 0 32px;
+    padding: 8px 32px 8px 32px;
   }
 
   .logo {
