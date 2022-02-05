@@ -4,11 +4,11 @@ import SearchInput from '@/components/SearchInput';
 import CommonView from '@/components/CommonView';
 import MovieModal from '@/components/MovieModal';
 import { getSearchMovieData } from './api/movie';
+import PageNation from '@/components/PageNation';
 import Header from '@/components/domain/Header';
 import { useEffect, useState } from 'react';
 import Spinner from '@/components/Spinner';
 import { useRouter } from 'next/router';
-import PageNation from '@/components/PageNation';
 
 const Home = (): JSX.Element => {
   const [seletedMovieId, setSeletedMovieId] = useState<string | null>(null);
@@ -52,10 +52,8 @@ const Home = (): JSX.Element => {
           <CommonView width={80} height={80} text={'영화를 검색해주세요!'} />
         )}
       </main>
-      {isShowModal && seletedMovieId ? (
+      {isShowModal && seletedMovieId && (
         <MovieModal onClose={closedModal} seletedMovieId={seletedMovieId} />
-      ) : (
-        ''
       )}
       <PageNation />
     </>
