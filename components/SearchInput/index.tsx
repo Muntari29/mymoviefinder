@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { ISearchInput } from '@/utils/interfaces/search';
+import { ISearchInput } from '@/utils/interfaces/common';
 import style from './index.module.scss';
 import { useRouter } from 'next/router';
 import MOVIELIST from './MOVIELIST';

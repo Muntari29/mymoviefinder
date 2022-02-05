@@ -1,4 +1,4 @@
-import { IPageNation } from '@/utils/interfaces/pageNation';
+import { IPageNation } from '@/utils/interfaces/common';
 import Link from 'next/link';
 import { useState } from 'react';
 import style from './index.module.scss';

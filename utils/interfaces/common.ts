@@ -4,3 +4,11 @@ export interface ICommonView {
   height: string | number | undefined;
   text: string;
 }
+
+export interface ISearchInput {
+  onSubmit: (title: string) => {};
+}
+
+export interface IPageNation {
+  totalResults?: number;
+}
