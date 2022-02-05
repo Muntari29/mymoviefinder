@@ -1,10 +1,8 @@
+import { IPageNation } from '@/utils/interfaces/pageNation';
 import Link from 'next/link';
 import { useState } from 'react';
 import style from './index.module.scss';
 
-interface IPageNation {
-  totalResults?: number;
-}
 const PageNation = ({ totalResults = 123 }: IPageNation) => {
   const [totalPage, setTotalPage] = useState(Math.ceil(totalResults / 10));
 
@@ -32,7 +30,6 @@ const PageNation = ({ totalResults = 123 }: IPageNation) => {
       <Link href="#">
         <a>&raquo;</a>
       </Link>
-      {/* <div className={style.totalResults}>총 검색결과 : {totalResults}개 </div> */}
     </footer>
   );
 };
