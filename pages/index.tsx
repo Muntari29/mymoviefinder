@@ -8,6 +8,7 @@ import Header from '@/components/domain/Header';
 import { useEffect, useState } from 'react';
 import Spinner from '@/components/Spinner';
 import { useRouter } from 'next/router';
+import PageNation from '@/components/PageNation';
 
 const Home = (): JSX.Element => {
   const [seletedMovieId, setSeletedMovieId] = useState<string | null>(null);
@@ -56,6 +57,7 @@ const Home = (): JSX.Element => {
       ) : (
         ''
       )}
+      <PageNation />
     </>
   );
 };
