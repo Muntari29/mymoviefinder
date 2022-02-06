@@ -59,7 +59,11 @@ const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
             onClick={() => onClick(imdbID)}
           >
             <Image
-              src={Poster}
+              src={
+                Poster !== 'N/A'
+                  ? Poster
+                  : 'https://cdn.pixabay.com/photo/2021/08/21/08/09/ban-6562104_640.png'
+              }
               alt="Image..."
               width={300}
               height={400}
