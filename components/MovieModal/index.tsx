@@ -18,11 +18,16 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
   }, [initModal]);
 
   const reszieImage = (data: IgetOneMovieData) => {
-    const posterArray = data.Poster.split('_');
-    const sizeIndex = posterArray.indexOf('SX300.jpg');
-    posterArray[sizeIndex] = 'SX700.jpg';
-    const resizePosterUrl = posterArray.join('_');
-    data.Poster = resizePosterUrl;
+    if (data.Poster === 'N/A') {
+      data.Poster =
+        'https://cdn.pixabay.com/photo/2021/08/21/08/09/ban-6562104_640.png';
+    } else {
+      const posterArray = data.Poster.split('_');
+      const sizeIndex = posterArray.indexOf('SX300.jpg');
+      posterArray[sizeIndex] = 'SX700.jpg';
+      const resizePosterUrl = posterArray.join('_');
+      data.Poster = resizePosterUrl;
+    }
     setGetOneMovieData(data);
   };
 
@@ -75,7 +80,11 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
             </div>
             <div className={style.footer}>
               <div>줄거리</div>
-              <div>{getOneMovieData.Plot}</div>
+              <div>
+                {getOneMovieData.Plot !== 'N/A'
+                  ? getOneMovieData.Plot
+                  : '제공되는 정보가 없습니다.'}
+              </div>
             </div>
           </div>
         </div>
