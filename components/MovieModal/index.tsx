@@ -71,19 +71,37 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
               <div>{getOneMovieData.Title}</div>
             </div>
             <div className={style.body}>
-              <div>평점 : {getOneMovieData.imdbRating}</div>
-              <div className={style.actors}>
-                출연 : {getOneMovieData.Actors}
+              <div>
+                평점 :{' '}
+                {getOneMovieData.imdbRating !== 'N/A'
+                  ? getOneMovieData.imdbRating
+                  : '정보가 없습니다.'}
               </div>
-              <div>상영일 : {getOneMovieData.Released}</div>
-              <div>상영시간 : {getOneMovieData.Runtime}</div>
+              <div className={style.actors}>
+                출연 :{' '}
+                {getOneMovieData.Actors !== 'N/A'
+                  ? getOneMovieData.Actors
+                  : '정보가 없습니다.'}
+              </div>
+              <div>
+                상영일 :{' '}
+                {getOneMovieData.Released !== 'N/A'
+                  ? getOneMovieData.Released
+                  : '정보가 없습니다.'}
+              </div>
+              <div>
+                상영시간 :{' '}
+                {getOneMovieData.Runtime !== 'N/A'
+                  ? getOneMovieData.Runtime
+                  : '정보가 없습니다.'}
+              </div>
             </div>
             <div className={style.footer}>
               <div>줄거리</div>
               <div>
                 {getOneMovieData.Plot !== 'N/A'
                   ? getOneMovieData.Plot
-                  : '제공되는 정보가 없습니다.'}
+                  : '정보가 없습니다.'}
               </div>
             </div>
           </div>
