@@ -1,3 +1,5 @@
+import { MouseEventHandler } from 'react';
+
 export interface ICommonView {
   src?: string | StaticImageData;
   width: string | number | undefined;
@@ -11,5 +13,6 @@ export interface ISearchInput {
 }
 
 export interface IPageNation {
-  totalResults?: number;
+  totalPosts: number;
+  updateMovieData: MouseEventHandler;
 }

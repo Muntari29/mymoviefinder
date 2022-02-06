@@ -1,14 +1,16 @@
 import { IPageNation } from '@/utils/interfaces/common';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from './index.module.scss';
 
-const PageNation = ({ totalResults = 123 }: IPageNation) => {
-  const [totalPage, setTotalPage] = useState(Math.ceil(totalResults / 10));
+const PageNation = ({ totalPosts, updateMovieData }: IPageNation) => {
+  const [totalPage, setTotalPage] = useState(Math.ceil(totalPosts / 10));
 
-  // console.log([...new Array(132).keys()]);
-  // console.log(Math.ceil(123 / 10));
-  console.log(totalPage);
+  useEffect(() => {
+    setTotalPage(Math.ceil(totalPosts / 10));
+  }, [totalPosts]);
+  console.log('totalpage', totalPage, totalPosts); // 33 323
+
   return (
     <footer className={style.container}>
       <Link href="#">
@@ -19,7 +21,12 @@ const PageNation = ({ totalResults = 123 }: IPageNation) => {
       </Link>
       <ul className={style.pageNation}>
         {[...Array(totalPage).keys()].map((page) => (
-          <li className={style.item} key={page}>
+          <li
+            id={String(page + 1)}
+            className={style.item}
+            key={page}
+            onClick={updateMovieData}
+          >
             {page + 1}
           </li>
         ))}

@@ -4,8 +4,9 @@ import style from './index.module.scss';
 import empty from '@/public/empty.png';
 import Image from 'next/image';
 import PageNation from '@/components/PageNation';
-import { useCallback, useEffect, useState } from 'react';
+import { MouseEventHandler, useCallback, useEffect, useState } from 'react';
 import { getSearchMovieData } from '@/pages/api/movie';
+import { useRouter } from 'next/router';
 
 const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
   const [list, setList] = useState([]);
@@ -15,10 +16,17 @@ const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
   const [currentPage, setCurrentPage] = useState(1);
   // 첫 게시물의 위치
   const offset = (currentPage - 1) * limit;
+  // 총 개신물 수
+  const [totalPosts, setTotalPosts] = useState(1);
+  const router = useRouter();
 
   const searchMovieData = useCallback(async () => {
     if (movieTitle) {
-      const { Search: data } = await getSearchMovieData(movieTitle);
+      const { Search: data, totalResults: total } = await getSearchMovieData(
+        movieTitle
+      );
+      console.log(total);
+      setTotalPosts(parseInt(total, 10));
       setList(data);
     }
   }, [movieTitle]);
@@ -27,7 +35,21 @@ const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
     searchMovieData();
   }, [searchMovieData]);
 
-  return movieTitle ? (
+  const updateMovieData: MouseEventHandler = async (e) => {
+    if (!movieTitle) return;
+    const selectedPageNumber = parseInt((e.target as HTMLLIElement).id, 10);
+    if (currentPage !== selectedPageNumber) {
+      setCurrentPage(selectedPageNumber);
+      const { Search: data } = await getSearchMovieData(
+        movieTitle,
+        selectedPageNumber
+      );
+      setList(data);
+    }
+    console.log('cureentPage', selectedPageNumber);
+  };
+
+  return list ? (
     <>
       <main className={style.container}>
         {list.map(({ Title, Year, imdbID, Type, Poster }) => (
@@ -50,7 +72,7 @@ const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
           </div>
         ))}
       </main>
-      <PageNation />
+      <PageNation totalPosts={totalPosts} updateMovieData={updateMovieData} />
     </>
   ) : (
     <CommonView
