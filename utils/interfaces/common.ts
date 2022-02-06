@@ -6,7 +6,8 @@ export interface ICommonView {
 }
 
 export interface ISearchInput {
-  onSubmit: (title: string) => {};
+  // onSubmit: (title: string) => {};
+  inputSubmitEvent(title: string): void;
 }
 
 export interface IPageNation {

@@ -1,5 +1,6 @@
 export interface IMovieList {
-  movieData: ImovieData[] | null;
+  // movieData: ImovieData[] | null;
+  movieTitle: string | null;
   onClick(movieId: string): void;
 }
 

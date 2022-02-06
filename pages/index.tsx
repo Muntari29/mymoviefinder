@@ -4,7 +4,6 @@ import SearchInput from '@/components/SearchInput';
 import CommonView from '@/components/CommonView';
 import MovieModal from '@/components/MovieModal';
 import { getSearchMovieData } from './api/movie';
-import PageNation from '@/components/PageNation';
 import Header from '@/components/domain/Header';
 import { useEffect, useState } from 'react';
 import Spinner from '@/components/Spinner';
@@ -12,19 +11,27 @@ import { useRouter } from 'next/router';
 
 const Home = (): JSX.Element => {
   const [seletedMovieId, setSeletedMovieId] = useState<string | null>(null);
-  const [movieData, setMovieData] = useState<ImovieData[] | null>(null);
+  // const [movieData, setMovieData] = useState<ImovieData[] | null>(null);
+  const [movieTitle, setMovieTitle] = useState<string | null>(null);
   const [isShowModal, setIsShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isInit, setIsInit] = useState(false);
   const router = useRouter();
 
-  const onSubmit = async (title: string) => {
+  const inputSubmitEvent = (title: string) => {
     setIsLoading(true);
-    const { Search: data } = await getSearchMovieData(title);
+    setMovieTitle(title);
     setIsInit(true);
-    setMovieData(data);
     setIsLoading(false);
   };
+
+  // const onSubmit = async (title: string) => {
+  //   setIsLoading(true);
+  //   const { Search: data } = await getSearchMovieData(title);
+  //   setIsInit(true);
+  //   setMovieData(data);
+  //   setIsLoading(false);
+  // };
 
   const onClick = (movieId: string) => {
     setSeletedMovieId(movieId);
@@ -43,11 +50,11 @@ const Home = (): JSX.Element => {
     <>
       <Header />
       <main>
-        <SearchInput onSubmit={onSubmit} />
+        <SearchInput inputSubmitEvent={inputSubmitEvent} />
         {isLoading ? (
           <Spinner />
         ) : isInit ? (
-          <MovieList movieData={movieData} onClick={onClick} />
+          <MovieList movieTitle={movieTitle} onClick={onClick} />
         ) : (
           <CommonView width={80} height={80} text={'영화를 검색해주세요!'} />
         )}
@@ -55,7 +62,6 @@ const Home = (): JSX.Element => {
       {isShowModal && seletedMovieId && (
         <MovieModal onClose={closedModal} seletedMovieId={seletedMovieId} />
       )}
-      <PageNation />
     </>
   );
 };

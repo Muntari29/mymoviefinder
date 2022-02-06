@@ -3,30 +3,55 @@ import { IMovieList } from '@/utils/interfaces/movies';
 import style from './index.module.scss';
 import empty from '@/public/empty.png';
 import Image from 'next/image';
+import PageNation from '@/components/PageNation';
+import { useCallback, useEffect, useState } from 'react';
+import { getSearchMovieData } from '@/pages/api/movie';
 
-const MovieList = ({ movieData, onClick }: IMovieList): JSX.Element => {
-  return movieData ? (
-    <main className={style.container}>
-      {movieData.map(({ Title, Year, imdbID, Type, Poster }) => (
-        <div
-          className={style.item}
-          key={imdbID}
-          onClick={() => onClick(imdbID)}
-        >
-          <Image
-            src={Poster}
-            alt="Image..."
-            width={300}
-            height={400}
-            objectFit="fill"
-          />
-          <div className={style.description}>
-            <div className={style.title}>{Title}</div>
-            <div className={style.year}>@{Year}</div>
+const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
+  const [list, setList] = useState([]);
+  // 페이지당 게시물 수
+  const [limit, setLimiit] = useState(10);
+  // 현재 페이지 번호
+  const [currentPage, setCurrentPage] = useState(1);
+  // 첫 게시물의 위치
+  const offset = (currentPage - 1) * limit;
+
+  const searchMovieData = useCallback(async () => {
+    if (movieTitle) {
+      const { Search: data } = await getSearchMovieData(movieTitle);
+      setList(data);
+    }
+  }, [movieTitle]);
+
+  useEffect(() => {
+    searchMovieData();
+  }, [searchMovieData]);
+
+  return movieTitle ? (
+    <>
+      <main className={style.container}>
+        {list.map(({ Title, Year, imdbID, Type, Poster }) => (
+          <div
+            className={style.item}
+            key={imdbID}
+            onClick={() => onClick(imdbID)}
+          >
+            <Image
+              src={Poster}
+              alt="Image..."
+              width={300}
+              height={400}
+              objectFit="fill"
+            />
+            <div className={style.description}>
+              <div className={style.title}>{Title}</div>
+              <div className={style.year}>@{Year}</div>
+            </div>
           </div>
-        </div>
-      ))}
-    </main>
+        ))}
+      </main>
+      <PageNation />
+    </>
   ) : (
     <CommonView
       src={empty}

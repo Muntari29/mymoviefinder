@@ -4,7 +4,7 @@ import style from './index.module.scss';
 import { useRouter } from 'next/router';
 import MOVIELIST from './MOVIELIST';
 
-const SearchInput = ({ onSubmit }: ISearchInput): JSX.Element => {
+const SearchInput = ({ inputSubmitEvent }: ISearchInput): JSX.Element => {
   const [userInput, setUserInput] = useState('');
   const router = useRouter();
 
@@ -14,7 +14,7 @@ const SearchInput = ({ onSubmit }: ISearchInput): JSX.Element => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit && onSubmit(userInput);
+    inputSubmitEvent && inputSubmitEvent(userInput);
   };
 
   useEffect(() => {
