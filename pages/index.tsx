@@ -46,6 +46,7 @@ const Home = (): JSX.Element => {
     setIsInit(false);
   }, [router]);
 
+  console.log('App');
   return (
     <>
       <Header />

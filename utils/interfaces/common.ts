@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { Dispatch, MouseEventHandler, SetStateAction } from 'react';
 
 export interface ICommonView {
   src?: string | StaticImageData;
@@ -13,6 +13,9 @@ export interface ISearchInput {
 }
 
 export interface IPageNation {
-  totalPosts: number;
-  updateMovieData: MouseEventHandler;
+  postLength: number;
+  setPage: Dispatch<SetStateAction<number>>;
+  limit: number;
+  page: number;
+  offset: number;
 }
