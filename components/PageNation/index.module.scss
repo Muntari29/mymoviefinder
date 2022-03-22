@@ -26,10 +26,11 @@
     text-align: center;
     padding: 16px;
   }
-  a {
+  div {
     color: $WHITE;
     font-size: 1.125rem;
     padding: 8px;
+    cursor: pointer;
     &:hover {
       color: darken($TEXT_BLUE, 20%);
       text-decoration: underline;

@@ -10,19 +10,31 @@ const PageNation = ({
   page,
   offset,
 }: IPageNation) => {
-  const numberOfPage = Math.ceil(postLength / limit);
-  console.log('PageNation', postLength, limit, page, numberOfPage, offset);
+  const totalPage = Math.ceil(postLength / limit);
+  const firstNumber = page - (page % limit) + 1;
+  const lastNumber = page - (page % limit) + limit;
+  const groupId = Math.ceil(page / limit);
+  const restPage = totalPage % 10;
+  // const PageNationLength = page > 10 ?
+
+  const formatTotalPage = () => {};
+
+  console.log(
+    'PageNation',
+    page,
+    totalPage,
+    firstNumber,
+    lastNumber,
+    groupId,
+    restPage
+  );
 
   return (
     <footer className={style.container}>
-      <Link href="#">
-        <a>&laquo;</a>
-      </Link>
-      <Link href="#">
-        <a>&lt;</a>
-      </Link>
+      <div onClick={() => setPage(1)}>&laquo;</div>
+      <div onClick={() => setPage(page - 1)}>&lt;</div>
       <ul className={style.pageNation}>
-        {Array(numberOfPage)
+        {Array(lastNumber > totalPage ? restPage : 10)
           .fill(0)
           .map((_, index) => (
             <li
@@ -31,16 +43,12 @@ const PageNation = ({
               key={index}
               onClick={() => setPage(index + 1)}
             >
-              {index + 1}
+              {(groupId - 1) * 10 + (index + 1)}
             </li>
           ))}
       </ul>
-      <Link href="#">
-        <a>&gt;</a>
-      </Link>
-      <Link href="#">
-        <a>&raquo;</a>
-      </Link>
+      <div onClick={() => setPage(page + 1)}>&gt;</div>
+      <div onClick={() => setPage(totalPage)}>&raquo;</div>
     </footer>
   );
 };
