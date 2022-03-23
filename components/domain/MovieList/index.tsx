@@ -3,21 +3,20 @@ import { IMovieList } from '@/utils/interfaces/movies';
 import style from './index.module.scss';
 import empty from '@/public/empty.png';
 import Image from 'next/image';
-import PageNation from '@/components/PageNation';
-import { MouseEventHandler, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { getSearchMovieData } from '@/pages/api/movie';
 import { useRouter } from 'next/router';
+import PagiNation from '@/components/PagiNation';
 
 const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
-  const [list, setList] = useState([]);
   // 페이지당 게시물 수
   const [limit, setLimiit] = useState(10);
   // 현재 페이지 번호
   const [page, setPage] = useState(1);
-  // 첫 게시물의 위치
-  const offset = (page - 1) * limit;
   // 총 게시물 갯수
   const [postLength, setPostLength] = useState(0);
+  const [posts, setPosts] = useState([]);
+  const offset = (page - 1) * limit;
 
   const router = useRouter();
 
@@ -27,9 +26,9 @@ const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
         movieTitle,
         page
       );
-      console.log(33, total, data);
+      console.log(33, movieTitle, page);
       setPostLength(parseInt(total, 10));
-      setList(data);
+      setPosts(data);
     }
   }, [movieTitle, page]);
 
@@ -37,27 +36,13 @@ const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
     searchMovieData();
   }, [searchMovieData]);
 
-  // const updateMovieData: MouseEventHandler = async (e) => {
-  //   if (!movieTitle) return;
-  //   const selectedPageNumber = parseInt((e.target as HTMLLIElement).id, 10);
-  //   if (currentPage !== selectedPageNumber) {
-  //     setCurrentPage(selectedPageNumber);
-  //     const { Search: data } = await getSearchMovieData(
-  //       movieTitle,
-  //       selectedPageNumber
-  //     );
-  //     setList(data);
-  //   }
-  //   console.log('cureentPage', selectedPageNumber);
-  // };
-
   console.log('MovieList');
 
   return (
     <>
-      {list ? (
+      {posts ? (
         <main className={style.container}>
-          {list.map(({ Title, Year, imdbID, Poster }) => (
+          {posts.map(({ Title, Year, imdbID, Poster }) => (
             <div
               className={style.item}
               key={imdbID}
@@ -89,8 +74,8 @@ const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
           text={'검색 결과가 없습니다.'}
         />
       )}
-      {list && (
-        <PageNation
+      {posts && (
+        <PagiNation
           postLength={postLength}
           page={page}
           setPage={setPage}
