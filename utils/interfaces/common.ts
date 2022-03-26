@@ -17,5 +17,4 @@ export interface IPageNation {
   setPage: Dispatch<SetStateAction<number>>;
   limit: number;
   page: number;
-  offset: number;
 }

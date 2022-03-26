@@ -22,6 +22,7 @@ const Home = (): JSX.Element => {
     setIsLoading(true);
     setMovieTitle(title);
     setIsInit(true);
+    console.log('inpu');
     setIsLoading(false);
   };
 
