@@ -22,17 +22,8 @@ const Home = (): JSX.Element => {
     setIsLoading(true);
     setMovieTitle(title);
     setIsInit(true);
-    console.log('inpu');
     setIsLoading(false);
   };
-
-  // const onSubmit = async (title: string) => {
-  //   setIsLoading(true);
-  //   const { Search: data } = await getSearchMovieData(title);
-  //   setIsInit(true);
-  //   setMovieData(data);
-  //   setIsLoading(false);
-  // };
 
   const onClick = (movieId: string) => {
     setSeletedMovieId(movieId);
@@ -47,7 +38,6 @@ const Home = (): JSX.Element => {
     setIsInit(false);
   }, [router]);
 
-  console.log('App');
   return (
     <>
       <Header />

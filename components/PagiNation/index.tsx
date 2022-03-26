@@ -1,14 +1,12 @@
 import { IPageNation } from '@/utils/interfaces/common';
-import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import style from './index.module.scss';
 
 const PagiNation = ({ postLength, setPage, limit, page }: IPageNation) => {
-  console.log(postLength, page, 'pagination');
   const totalPage = Math.ceil(postLength / limit); // 14
   const firstNumber = page - (page % limit) + 1; // 1 , 10page = > 11
   const lastNumber = page - (page % limit) + limit; // 10, 10page => 20
-  const number = lastNumber > totalPage ? totalPage : lastNumber;
+  const finalNumber = lastNumber > totalPage ? totalPage : lastNumber;
   const totalArray = [...Array(totalPage).keys()].map((el) => el + 1);
   const [firstIndex, setFirstIndex] = useState(1);
   const [lastIndex, setLastIndex] = useState<number | null>(null);
@@ -30,9 +28,9 @@ const PagiNation = ({ postLength, setPage, limit, page }: IPageNation) => {
   const initPageIndex = useCallback(() => {
     if (page % limit !== 0) {
       setFirstIndex(firstNumber);
-      setLastIndex(number);
+      setLastIndex(finalNumber);
     }
-  }, [page, limit, firstNumber, number]);
+  }, [page, limit, firstNumber, finalNumber]);
 
   useEffect(() => {
     initPageIndex();

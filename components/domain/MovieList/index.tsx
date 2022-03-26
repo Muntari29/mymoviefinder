@@ -33,8 +33,6 @@ const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
     searchMovieData();
   }, [searchMovieData]);
 
-  console.log('MovieList', movieTitle);
-
   return (
     <>
       {posts ? (
