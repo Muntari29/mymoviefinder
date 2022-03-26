@@ -1,0 +1,46 @@
+@import '@/utils/constants/_colors.scss';
+@import '@/utils/constants/_mixin.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72px;
+  .pageNation {
+    display: flex;
+    padding: 8px;
+    .active {
+      background-color: mediumpurple;
+    }
+  }
+  .item {
+    list-style: none;
+    padding: 8px;
+    border: 1px solid $TEXT_GRAY_LIGHT;
+    color: $TEXT_BLUE;
+    cursor: pointer;
+    &:hover {
+      color: darken($TEXT_BLUE, 20%);
+      text-decoration: underline;
+      text-decoration-color: $WHITE;
+    }
+  }
+  .totalResults {
+    text-align: center;
+    padding: 16px;
+  }
+  div {
+    color: $WHITE;
+    font-size: 1.125rem;
+    padding: 8px;
+    cursor: pointer;
+    &:hover {
+      color: darken($TEXT_BLUE, 20%);
+      text-decoration: underline;
+      text-decoration-color: $WHITE;
+    }
+  }
+}
+
+@include mobile {
+}

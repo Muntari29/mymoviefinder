@@ -18,11 +18,16 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
   }, [initModal]);
 
   const reszieImage = (data: IgetOneMovieData) => {
-    const posterArray = data.Poster.split('_');
-    const sizeIndex = posterArray.indexOf('SX300.jpg');
-    posterArray[sizeIndex] = 'SX700.jpg';
-    const resizePosterUrl = posterArray.join('_');
-    data.Poster = resizePosterUrl;
+    if (data.Poster === 'N/A') {
+      data.Poster =
+        'https://cdn.pixabay.com/photo/2021/08/21/08/09/ban-6562104_640.png';
+    } else {
+      const posterArray = data.Poster.split('_');
+      const sizeIndex = posterArray.indexOf('SX300.jpg');
+      posterArray[sizeIndex] = 'SX700.jpg';
+      const resizePosterUrl = posterArray.join('_');
+      data.Poster = resizePosterUrl;
+    }
     setGetOneMovieData(data);
   };
 
@@ -66,16 +71,38 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
               <div>{getOneMovieData.Title}</div>
             </div>
             <div className={style.body}>
-              <div>평점 : {getOneMovieData.imdbRating}</div>
-              <div className={style.actors}>
-                출연 : {getOneMovieData.Actors}
+              <div>
+                평점 :{' '}
+                {getOneMovieData.imdbRating !== 'N/A'
+                  ? getOneMovieData.imdbRating
+                  : '정보가 없습니다.'}
               </div>
-              <div>상영일 : {getOneMovieData.Released}</div>
-              <div>상영시간 : {getOneMovieData.Runtime}</div>
+              <div className={style.actors}>
+                출연 :{' '}
+                {getOneMovieData.Actors !== 'N/A'
+                  ? getOneMovieData.Actors
+                  : '정보가 없습니다.'}
+              </div>
+              <div>
+                상영일 :{' '}
+                {getOneMovieData.Released !== 'N/A'
+                  ? getOneMovieData.Released
+                  : '정보가 없습니다.'}
+              </div>
+              <div>
+                상영시간 :{' '}
+                {getOneMovieData.Runtime !== 'N/A'
+                  ? getOneMovieData.Runtime
+                  : '정보가 없습니다.'}
+              </div>
             </div>
             <div className={style.footer}>
               <div>줄거리</div>
-              <div>{getOneMovieData.Plot}</div>
+              <div>
+                {getOneMovieData.Plot !== 'N/A'
+                  ? getOneMovieData.Plot
+                  : '정보가 없습니다.'}
+              </div>
             </div>
           </div>
         </div>
