@@ -9,6 +9,9 @@
   .pageNation {
     display: flex;
     padding: 8px;
+    .active {
+      background-color: mediumpurple;
+    }
   }
   .item {
     list-style: none;

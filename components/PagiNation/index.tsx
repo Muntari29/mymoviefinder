@@ -42,16 +42,20 @@ const PagiNation = ({ postLength, setPage, limit, page }: IPageNation) => {
       <div onClick={handlePrevSetPage}>&lt;</div>
       <ul className={style.pageNation}>
         {lastIndex &&
-          totalArray.slice(firstIndex - 1, lastIndex).map((page, index) => (
-            <li
-              id={String(index + 1)}
-              className={style.item}
-              key={index}
-              onClick={() => setPage(page)}
-            >
-              {page}
-            </li>
-          ))}
+          totalArray
+            .slice(firstIndex - 1, lastIndex)
+            .map((pageNumber, index) => (
+              <li
+                id={String(index + 1)}
+                className={`${style.item} ${
+                  page === pageNumber ? style.active : ''
+                }`}
+                key={index}
+                onClick={() => setPage(pageNumber)}
+              >
+                {pageNumber}
+              </li>
+            ))}
       </ul>
       <div onClick={handleNextSetPage}>&gt;</div>
       <div onClick={() => setPage(totalPage)}>&raquo;</div>
