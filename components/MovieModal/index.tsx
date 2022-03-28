@@ -3,6 +3,7 @@ import { MouseEventHandler, useCallback, useEffect, useState } from 'react';
 import { getDetailMovieData } from '@/pages/api/movie';
 import style from './index.module.scss';
 import Image from 'next/image';
+import RatingGetter from '../RatingGetter';
 
 const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
   const [getOneMovieData, setGetOneMovieData] =
@@ -73,9 +74,13 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
             <div className={style.body}>
               <div>
                 평점 :{' '}
-                {getOneMovieData.imdbRating !== 'N/A'
-                  ? getOneMovieData.imdbRating
-                  : '정보가 없습니다.'}
+                {getOneMovieData.imdbRating !== 'N/A' ? (
+                  <RatingGetter
+                    rating={parseInt(getOneMovieData.imdbRating, 10)}
+                  />
+                ) : (
+                  '정보가 없습니다.'
+                )}
               </div>
               <div className={style.actors}>
                 출연 :{' '}
