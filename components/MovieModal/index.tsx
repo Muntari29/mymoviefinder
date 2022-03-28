@@ -75,9 +75,12 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
               <div>
                 평점 :{' '}
                 {getOneMovieData.imdbRating !== 'N/A' ? (
-                  <RatingGetter
-                    rating={parseInt(getOneMovieData.imdbRating, 10)}
-                  />
+                  <>
+                    {getOneMovieData.imdbRating}
+                    <RatingGetter
+                      rating={parseFloat(getOneMovieData.imdbRating)}
+                    />
+                  </>
                 ) : (
                   '정보가 없습니다.'
                 )}

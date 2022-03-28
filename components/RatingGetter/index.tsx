@@ -19,7 +19,7 @@ const RatingGetter = ({ rating }: IRatingGetter): JSX.Element => {
             </g>
           </svg>
         ))}
-        <ActiveStar activeWidth={rating * 44}>
+        <ActiveStar activeWidth={rating * 22}>
           {new Array(5).fill(1).map((_, index) => (
             <svg
               width="44"
