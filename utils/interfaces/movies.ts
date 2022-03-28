@@ -30,3 +30,7 @@ export interface IgetOneMovieData {
   imdbRating: string;
   imdbVotes: string;
 }
+
+export interface IRatingGetter {
+  rating: number;
+}
