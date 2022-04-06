@@ -16,7 +16,10 @@ const MUIPagiNation = ({ postLength, setPage, limit, page }: IPageNation) => {
       className={style.pagiNation}
       count={totalPage}
       page={currentPage}
+      color="primary"
       onChange={handleCurrentPage}
+      showFirstButton
+      showLastButton
     />
   );
 };
