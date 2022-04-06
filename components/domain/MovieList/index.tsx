@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { getSearchMovieData } from '@/pages/api/movie';
 import PagiNation from '@/components/PagiNation';
+import MUIPagiNation from '@/components/MUIPagiNation';
 
 const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
   const limit = 10;
@@ -70,13 +71,19 @@ const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
         />
       )}
       {postLength ? (
-        <PagiNation
+        <MUIPagiNation
           postLength={postLength}
           page={page}
           setPage={setPage}
           limit={limit}
         />
       ) : (
+        // <PagiNation
+        //   postLength={postLength}
+        //   page={page}
+        //   setPage={setPage}
+        //   limit={limit}
+        // />
         <></>
       )}
     </>
