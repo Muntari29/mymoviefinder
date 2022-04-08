@@ -1,5 +1,4 @@
 export interface IMovieList {
-  // movieData: ImovieData[] | null;
   movieTitle: string | null;
   onClick(movieId: string): void;
 }
@@ -33,4 +32,10 @@ export interface IgetOneMovieData {
 
 export interface IRatingGetter {
   rating: number;
+}
+
+export interface IGetResponse {
+  Response: string;
+  Search: ImovieData[];
+  totalResults: string;
 }

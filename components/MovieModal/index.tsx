@@ -1,21 +1,24 @@
-import { IgetOneMovieData, IMovieModal } from '@/utils/interfaces/movies';
 import { MouseEventHandler, useCallback, useEffect, useState } from 'react';
 import { getDetailMovieData } from '@/pages/api/movie';
 import style from './index.module.scss';
 import Image from 'next/image';
 import RatingGetter from '../RatingGetter';
 
+import { IgetOneMovieData, IMovieModal } from 'types/interfaces/movies';
 const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
   const [getOneMovieData, setGetOneMovieData] =
     useState<IgetOneMovieData | null>(null);
 
   const initModal = useCallback(async () => {
     const data = await getDetailMovieData(seletedMovieId);
-    reszieImage(data);
+    data && reszieImage(data);
   }, [seletedMovieId]);
 
   useEffect(() => {
     initModal();
+    return () => {
+      setGetOneMovieData(null);
+    };
   }, [initModal]);
 
   const reszieImage = (data: IgetOneMovieData) => {

@@ -1,9 +1,7 @@
-import { ImovieData } from '@/utils/interfaces/movies';
 import MovieList from '@/components/domain/MovieList';
 import SearchInput from '@/components/SearchInput';
 import CommonView from '@/components/CommonView';
 import MovieModal from '@/components/MovieModal';
-import { getSearchMovieData } from './api/movie';
 import Header from '@/components/domain/Header';
 import { useEffect, useState } from 'react';
 import Spinner from '@/components/Spinner';
@@ -11,7 +9,6 @@ import { useRouter } from 'next/router';
 
 const Home = (): JSX.Element => {
   const [seletedMovieId, setSeletedMovieId] = useState<string | null>(null);
-  // const [movieData, setMovieData] = useState<ImovieData[] | null>(null);
   const [movieTitle, setMovieTitle] = useState<string | null>(null);
   const [isShowModal, setIsShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
