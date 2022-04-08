@@ -11,7 +11,6 @@ import { useRouter } from 'next/router';
 
 const Home = (): JSX.Element => {
   const [seletedMovieId, setSeletedMovieId] = useState<string | null>(null);
-  // const [movieData, setMovieData] = useState<ImovieData[] | null>(null);
   const [movieTitle, setMovieTitle] = useState<string | null>(null);
   const [isShowModal, setIsShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

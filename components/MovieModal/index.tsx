@@ -16,6 +16,9 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
 
   useEffect(() => {
     initModal();
+    return () => {
+      setGetOneMovieData(null);
+    };
   }, [initModal]);
 
   const reszieImage = (data: IgetOneMovieData) => {
