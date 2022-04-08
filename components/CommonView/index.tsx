@@ -1,4 +1,4 @@
-import { ICommonView } from '@/utils/interfaces/common';
+import { ICommonView } from 'types/interfaces/common';
 import movieLogo from '@/public/movieLogo.png';
 import style from './index.module.scss';
 import Image from 'next/image';

@@ -1,4 +1,4 @@
-import { Dispatch, MouseEventHandler, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 export interface ICommonView {
   src?: string | StaticImageData;
@@ -8,7 +8,6 @@ export interface ICommonView {
 }
 
 export interface ISearchInput {
-  // onSubmit: (title: string) => {};
   inputSubmitEvent(title: string): void;
 }
 

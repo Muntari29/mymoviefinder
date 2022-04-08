@@ -1,4 +1,4 @@
-import { IPageNation } from '@/utils/interfaces/common';
+import { IPageNation } from 'types/interfaces/common';
 import { useCallback, useEffect, useState } from 'react';
 import style from './index.module.scss';
 

@@ -1,5 +1,5 @@
 import CommonView from '@/components/CommonView';
-import { IMovieList } from '@/utils/interfaces/movies';
+import { ImovieData, IMovieList } from 'types/interfaces/movies';
 import style from './index.module.scss';
 import empty from '@/public/empty.png';
 import Image from 'next/image';
@@ -12,7 +12,7 @@ const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
   const limit = 10;
   const [page, setPage] = useState(1);
   const [postLength, setPostLength] = useState(0);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<ImovieData[]>([]);
   const [pervMovieTitle, setPrevMovieTitle] = useState(movieTitle);
 
   const searchMovieData = useCallback(async () => {
@@ -21,12 +21,11 @@ const MovieList = ({ movieTitle, onClick }: IMovieList): JSX.Element => {
         setPrevMovieTitle(movieTitle);
         setPage(1);
       }
-      const { Search: data, totalResults: total } = await getSearchMovieData(
-        pervMovieTitle,
-        page
-      );
-      setPostLength(parseInt(total, 10));
-      setPosts(data);
+      const data = await getSearchMovieData(pervMovieTitle, page);
+      if (data) {
+        setPostLength(parseInt(data.totalResults, 10));
+        setPosts(data.Search);
+      }
     }
   }, [movieTitle, page, pervMovieTitle]);
 

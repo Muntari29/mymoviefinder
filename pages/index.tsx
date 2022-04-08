@@ -1,9 +1,7 @@
-import { ImovieData } from '@/utils/interfaces/movies';
 import MovieList from '@/components/domain/MovieList';
 import SearchInput from '@/components/SearchInput';
 import CommonView from '@/components/CommonView';
 import MovieModal from '@/components/MovieModal';
-import { getSearchMovieData } from './api/movie';
 import Header from '@/components/domain/Header';
 import { useEffect, useState } from 'react';
 import Spinner from '@/components/Spinner';

@@ -1,4 +1,4 @@
-import { IPageNation } from '@/utils/interfaces/common';
+import { IPageNation } from 'types/interfaces/common';
 import { Pagination } from '@mui/material';
 import style from './index.module.scss';
 import { useState } from 'react';
