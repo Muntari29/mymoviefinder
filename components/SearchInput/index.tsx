@@ -4,7 +4,7 @@ import style from './index.module.scss';
 import { useRouter } from 'next/router';
 import MOVIELIST from './MOVIELIST';
 
-const SearchInput = ({ inputSubmitEvent }: ISearchInput): JSX.Element => {
+const SearchInput = ({ onSubmit }: ISearchInput): JSX.Element => {
   const [userInput, setUserInput] = useState('');
   const router = useRouter();
 
@@ -12,9 +12,9 @@ const SearchInput = ({ inputSubmitEvent }: ISearchInput): JSX.Element => {
     setUserInput(e.target.value);
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    inputSubmitEvent && inputSubmitEvent(userInput);
+    onSubmit && onSubmit(userInput);
   };
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const SearchInput = ({ inputSubmitEvent }: ISearchInput): JSX.Element => {
   return (
     <>
       <div className={style.container}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={onSubmitHandler}>
           <label htmlFor="search-input" />
           <input
             id="search-input"

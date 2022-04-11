@@ -1,5 +1,5 @@
 import style from './index.module.scss';
-import spin from '@/public/spin.gif';
+import spin from '@/public/spin.svg';
 import Image from 'next/image';
 
 const Spinner = () => {

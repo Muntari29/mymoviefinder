@@ -2,8 +2,13 @@ import { IPageNation } from 'types/interfaces/common';
 import { useCallback, useEffect, useState } from 'react';
 import style from './index.module.scss';
 
-const PagiNation = ({ postLength, setPage, limit, page }: IPageNation) => {
-  const totalPage = Math.ceil(postLength / limit); // 14
+const PagiNation = ({
+  totalLength,
+  onClickPagiNation,
+  limit,
+  page,
+}: IPageNation) => {
+  const totalPage = Math.ceil(totalLength / limit); // 14
   const firstNumber = page - (page % limit) + 1; // 1 , 10page = > 11
   const lastNumber = page - (page % limit) + limit; // 10, 10page => 20
   const finalNumber = lastNumber > totalPage ? totalPage : lastNumber;
@@ -15,13 +20,13 @@ const PagiNation = ({ postLength, setPage, limit, page }: IPageNation) => {
 
   const handlePrevSetPage = () => {
     if (page !== 1) {
-      setPage(page - 1);
+      onClickPagiNation(page - 1);
     }
   };
 
   const handleNextSetPage = () => {
     if (page !== totalPage) {
-      setPage(page + 1);
+      onClickPagiNation(page + 1);
     }
   };
 
@@ -36,9 +41,9 @@ const PagiNation = ({ postLength, setPage, limit, page }: IPageNation) => {
     initPageIndex();
   }, [initPageIndex]);
 
-  return postLength ? (
+  return totalLength ? (
     <footer className={style.container}>
-      <div onClick={() => setPage(1)}>&laquo;</div>
+      <div onClick={() => onClickPagiNation(1)}>&laquo;</div>
       <div onClick={handlePrevSetPage}>&lt;</div>
       <ul className={style.pageNation}>
         {lastIndex &&
@@ -51,14 +56,14 @@ const PagiNation = ({ postLength, setPage, limit, page }: IPageNation) => {
                   page === pageNumber ? style.active : ''
                 }`}
                 key={index}
-                onClick={() => setPage(pageNumber)}
+                onClick={() => onClickPagiNation(pageNumber)}
               >
                 {pageNumber}
               </li>
             ))}
       </ul>
       <div onClick={handleNextSetPage}>&gt;</div>
-      <div onClick={() => setPage(totalPage)}>&raquo;</div>
+      <div onClick={() => onClickPagiNation(totalPage)}>&raquo;</div>
     </footer>
   ) : (
     <></>
