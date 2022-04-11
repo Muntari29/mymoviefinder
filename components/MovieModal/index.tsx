@@ -3,7 +3,6 @@ import { getDetailMovieData } from '@/pages/api/movie';
 import style from './index.module.scss';
 import Image from 'next/image';
 import RatingGetter from '../RatingGetter';
-
 import { IgetOneMovieData, IMovieModal } from 'types/interfaces/movies';
 import Spinner from '../Spinner';
 
