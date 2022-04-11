@@ -4,7 +4,7 @@ import { IgetOneMovieData, IGetResponse } from 'types/interfaces/movies';
 const API_END_POINT = process.env.NEXT_PUBLIC_API_END_POINT;
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
-const instanceAxios = axios.create({
+const axiosInstance = axios.create({
   timeout: 3000,
   method: 'GET',
 });
@@ -14,7 +14,7 @@ export const getSearchMovieData = async (
   page: number = 1
 ): Promise<IGetResponse | undefined> => {
   try {
-    const res = await instanceAxios({
+    const res = await axiosInstance({
       url: `${API_END_POINT}?apikey=${API_KEY}&s=${title}&page=${page}`,
     });
     if (res.status === 200) return res.data;
@@ -27,7 +27,7 @@ export const getDetailMovieData = async (
   movieId: string
 ): Promise<IgetOneMovieData | undefined> => {
   try {
-    const res = await instanceAxios({
+    const res = await axiosInstance({
       url: `${API_END_POINT}?apikey=${API_KEY}&i=${movieId}&plot=short`,
     });
     if (res.status === 200) return res.data;
