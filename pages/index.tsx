@@ -49,8 +49,10 @@ const Home = (): JSX.Element => {
   );
 
   const openModal = (movieId: string) => {
+    console.log('start');
     setSeletedMovieId(movieId);
     setIsShowModal(true);
+    console.log('ent');
   };
 
   const closedModal = () => {

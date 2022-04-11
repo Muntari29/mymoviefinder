@@ -5,13 +5,19 @@ import Image from 'next/image';
 import RatingGetter from '../RatingGetter';
 
 import { IgetOneMovieData, IMovieModal } from 'types/interfaces/movies';
+import Spinner from '../Spinner';
 const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
   const [getOneMovieData, setGetOneMovieData] =
     useState<IgetOneMovieData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const initModal = useCallback(async () => {
+    console.log(11);
+    // setIsLoading(true);
     const data = await getDetailMovieData(seletedMovieId);
     data && reszieImage(data);
+    console.log(2);
+    // setIsLoading(false);
   }, [seletedMovieId]);
 
   useEffect(() => {
@@ -60,63 +66,67 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
 
   return (
     <div id="mask" className={style.mask} onClick={handlClickClosedModal}>
-      {getOneMovieData && (
-        <div className={style.container}>
-          <div className={style.section}>
-            <Image
-              src={getOneMovieData.Poster}
-              width="100%"
-              height="100%"
-              objectFit="contain"
-              layout="responsive"
-              alt={'Poster...'}
-            />
-            <div className={style.header}>
-              <div>{getOneMovieData.Title}</div>
-            </div>
-            <div className={style.body}>
-              <div>
-                평점 :{' '}
-                {getOneMovieData.imdbRating !== 'N/A' ? (
-                  <>
-                    {getOneMovieData.imdbRating}
-                    <RatingGetter
-                      rating={parseFloat(getOneMovieData.imdbRating)}
-                    />
-                  </>
-                ) : (
-                  '정보가 없습니다.'
-                )}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        getOneMovieData && (
+          <div className={style.container}>
+            <div className={style.section}>
+              <Image
+                src={getOneMovieData.Poster}
+                width="100%"
+                height="100%"
+                objectFit="contain"
+                layout="responsive"
+                alt={'Poster...'}
+              />
+              <div className={style.header}>
+                <div>{getOneMovieData.Title}</div>
               </div>
-              <div className={style.actors}>
-                출연 :{' '}
-                {getOneMovieData.Actors !== 'N/A'
-                  ? getOneMovieData.Actors
-                  : '정보가 없습니다.'}
+              <div className={style.body}>
+                <div>
+                  평점 :{' '}
+                  {getOneMovieData.imdbRating !== 'N/A' ? (
+                    <>
+                      {getOneMovieData.imdbRating}
+                      <RatingGetter
+                        rating={parseFloat(getOneMovieData.imdbRating)}
+                      />
+                    </>
+                  ) : (
+                    '정보가 없습니다.'
+                  )}
+                </div>
+                <div className={style.actors}>
+                  출연 :{' '}
+                  {getOneMovieData.Actors !== 'N/A'
+                    ? getOneMovieData.Actors
+                    : '정보가 없습니다.'}
+                </div>
+                <div>
+                  상영일 :{' '}
+                  {getOneMovieData.Released !== 'N/A'
+                    ? getOneMovieData.Released
+                    : '정보가 없습니다.'}
+                </div>
+                <div>
+                  상영시간 :{' '}
+                  {getOneMovieData.Runtime !== 'N/A'
+                    ? getOneMovieData.Runtime
+                    : '정보가 없습니다.'}
+                </div>
               </div>
-              <div>
-                상영일 :{' '}
-                {getOneMovieData.Released !== 'N/A'
-                  ? getOneMovieData.Released
-                  : '정보가 없습니다.'}
-              </div>
-              <div>
-                상영시간 :{' '}
-                {getOneMovieData.Runtime !== 'N/A'
-                  ? getOneMovieData.Runtime
-                  : '정보가 없습니다.'}
-              </div>
-            </div>
-            <div className={style.footer}>
-              <div>줄거리</div>
-              <div>
-                {getOneMovieData.Plot !== 'N/A'
-                  ? getOneMovieData.Plot
-                  : '정보가 없습니다.'}
+              <div className={style.footer}>
+                <div>줄거리</div>
+                <div>
+                  {getOneMovieData.Plot !== 'N/A'
+                    ? getOneMovieData.Plot
+                    : '정보가 없습니다.'}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )
       )}
     </div>
   );
