@@ -6,19 +6,22 @@ import RatingGetter from '../RatingGetter';
 
 import { IgetOneMovieData, IMovieModal } from 'types/interfaces/movies';
 import Spinner from '../Spinner';
+
 const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
   const [getOneMovieData, setGetOneMovieData] =
     useState<IgetOneMovieData | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const initModal = useCallback(async () => {
-    console.log(11);
-    // setIsLoading(true);
+    setIsLoading(true);
     const data = await getDetailMovieData(seletedMovieId);
-    data && reszieImage(data);
-    console.log(2);
-    // setIsLoading(false);
-  }, [seletedMovieId]);
+    if (data) {
+      reszieImage(data);
+    } else {
+      onClose();
+    }
+    setIsLoading(false);
+  }, [seletedMovieId, onClose]);
 
   useEffect(() => {
     initModal();
