@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
-
 export interface ICommonView {
   src?: string | StaticImageData;
   width: string | number | undefined;
@@ -8,12 +6,12 @@ export interface ICommonView {
 }
 
 export interface ISearchInput {
-  inputSubmitEvent(title: string): void;
+  onSubmit(title: string): void;
 }
 
 export interface IPageNation {
-  postLength: number;
-  setPage: Dispatch<SetStateAction<number>>;
+  totalLength: number;
+  onClickPagiNation: (pageNumber: number) => void;
   limit: number;
   page: number;
 }

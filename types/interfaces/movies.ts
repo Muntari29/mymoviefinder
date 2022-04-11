@@ -1,6 +1,9 @@
 export interface IMovieList {
-  movieTitle: string | null;
-  onClick(movieId: string): void;
+  posts: ImovieData[];
+  page: number;
+  totalLength: number;
+  onClickModalHanlder: (movieId: string) => void;
+  onClickPagiNation: (pageNumber: number) => void;
 }
 
 export interface ImovieData {

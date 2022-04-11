@@ -3,12 +3,17 @@ import { Pagination } from '@mui/material';
 import style from './index.module.scss';
 import { useState } from 'react';
 
-const MUIPagiNation = ({ postLength, setPage, limit, page }: IPageNation) => {
+const MUIPagiNation = ({
+  totalLength,
+  onClickPagiNation,
+  limit,
+  page,
+}: IPageNation) => {
   const [currentPage, setCurrentPage] = useState(page);
-  const totalPage = Math.ceil(postLength / limit);
+  const totalPage = Math.ceil(totalLength / limit);
 
   const handleCurrentPage = (e: React.ChangeEvent<unknown>, number: number) => {
-    setPage(number);
+    onClickPagiNation(number);
     setCurrentPage(number);
   };
   return (
