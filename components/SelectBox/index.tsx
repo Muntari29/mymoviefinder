@@ -1,6 +1,7 @@
+import React from 'react';
 import style from './index.module.scss';
 
-const SelectBox = (): JSX.Element => {
+const SelectBox = () => {
   return (
     <>
       <label htmlFor="home-select" />
@@ -15,4 +16,4 @@ const SelectBox = (): JSX.Element => {
   );
 };
 
-export default SelectBox;
+export default React.memo(SelectBox);

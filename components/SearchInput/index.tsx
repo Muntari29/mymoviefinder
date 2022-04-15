@@ -1,21 +1,31 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import {
+  ChangeEvent,
+  FormEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { ISearchInput } from 'types/interfaces/common';
 import style from './index.module.scss';
 import { useRouter } from 'next/router';
 import MOVIELIST from './MOVIELIST';
+import React from 'react';
 
-const SearchInput = ({ onSubmit }: ISearchInput): JSX.Element => {
+const SearchInput = ({ onSubmit }: ISearchInput) => {
   const [userInput, setUserInput] = useState('');
   const router = useRouter();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>): void => {
     setUserInput(e.target.value);
-  };
+  }, []);
 
-  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onSubmit && onSubmit(userInput);
-  };
+  const onSubmitHandler = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      onSubmit && onSubmit(userInput);
+    },
+    [onSubmit, userInput]
+  );
 
   useEffect(() => {
     setUserInput('');
@@ -47,4 +57,4 @@ const SearchInput = ({ onSubmit }: ISearchInput): JSX.Element => {
   );
 };
 
-export default SearchInput;
+export default React.memo(SearchInput);

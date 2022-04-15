@@ -1,6 +1,7 @@
 import style from './index.module.scss';
 import spin from '@/public/spin.svg';
 import Image from 'next/image';
+import React from 'react';
 
 const Spinner = () => {
   return (
@@ -15,4 +16,4 @@ const Spinner = () => {
     </div>
   );
 };
-export default Spinner;
+export default React.memo(Spinner);

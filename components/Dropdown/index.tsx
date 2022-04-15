@@ -1,6 +1,6 @@
 import style from './index.module.scss';
 
-const Dropdown = (): JSX.Element => {
+const Dropdown = () => {
   return (
     <div className={style.dropdown}>
       <ul>

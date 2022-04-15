@@ -12,7 +12,7 @@ const MovieList = ({
   totalLength,
   onClickPagiNation,
   onClickModalHanlder,
-}: IMovieList): JSX.Element => {
+}: IMovieList) => {
   return (
     <>
       {posts ? (

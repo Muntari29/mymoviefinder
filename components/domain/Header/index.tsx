@@ -6,6 +6,7 @@ import style from './index.module.scss';
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 
 const Header = () => {
   const [isHover, setIsHover] = useState(false);
@@ -63,4 +64,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);

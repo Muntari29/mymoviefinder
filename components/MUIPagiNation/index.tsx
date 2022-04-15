@@ -1,7 +1,7 @@
 import { IPageNation } from 'types/interfaces/common';
 import { Pagination } from '@mui/material';
 import style from './index.module.scss';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 const MUIPagiNation = ({
   totalLength,
@@ -10,12 +10,18 @@ const MUIPagiNation = ({
   page,
 }: IPageNation) => {
   const [currentPage, setCurrentPage] = useState(page);
-  const totalPage = Math.ceil(totalLength / limit);
+  const totalPage = useMemo(
+    () => Math.ceil(totalLength / limit),
+    [limit, totalLength]
+  );
 
-  const handleCurrentPage = (e: React.ChangeEvent<unknown>, number: number) => {
-    onClickPagiNation(number);
-    setCurrentPage(number);
-  };
+  const handleCurrentPage = useCallback(
+    (e: React.ChangeEvent<unknown>, number: number) => {
+      onClickPagiNation(number);
+      setCurrentPage(number);
+    },
+    [onClickPagiNation]
+  );
   return (
     <Pagination
       className={style.pagiNation}
