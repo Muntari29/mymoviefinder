@@ -20,7 +20,7 @@ const Home = () => {
   const [totalLength, setTotalLength] = useState(0);
   const router = useRouter();
 
-  const onInputSubmitGetAllAPI = async (title: string) => {
+  const onInputSubmitGetAllAPI = useCallback(async (title: string) => {
     setIsLoading(true);
     setMovieTitle(title);
     setPage(1);
@@ -32,7 +32,7 @@ const Home = () => {
     }
     setIsInit(true);
     setIsLoading(false);
-  };
+  }, []);
 
   const onClickGetDetailAPI = useCallback(
     async (pageNumber: number) => {
@@ -48,14 +48,14 @@ const Home = () => {
     [movieTitle]
   );
 
-  const openModal = (movieId: string) => {
+  const openModal = useCallback((movieId: string) => {
     setSeletedMovieId(movieId);
     setIsShowModal(true);
-  };
+  }, []);
 
-  const closedModal = () => {
+  const closedModal = useCallback(() => {
     setIsShowModal(false);
-  };
+  }, []);
 
   useEffect(() => {
     setIsInit(false);

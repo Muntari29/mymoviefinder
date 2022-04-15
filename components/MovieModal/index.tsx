@@ -1,4 +1,9 @@
-import { MouseEventHandler, useCallback, useEffect, useState } from 'react';
+import React, {
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { getDetailMovieData } from '@/pages/api/movie';
 import style from './index.module.scss';
 import Image from 'next/image';
@@ -29,7 +34,7 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal) => {
     };
   }, [initModal]);
 
-  const reszieImage = (data: IgetOneMovieData) => {
+  const reszieImage = useCallback((data: IgetOneMovieData) => {
     if (data.Poster === 'N/A') {
       data.Poster =
         'https://cdn.pixabay.com/photo/2021/08/21/08/09/ban-6562104_640.png';
@@ -41,10 +46,10 @@ const MovieModal = ({ seletedMovieId, onClose }: IMovieModal) => {
       data.Poster = resizePosterUrl;
     }
     setGetOneMovieData(data);
-  };
+  }, []);
 
-  const handlClickClosedModal: MouseEventHandler = useCallback(
-    (e) => {
+  const handlClickClosedModal = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
       const seletedId = (e.target as HTMLDivElement).id;
       if (seletedId === 'mask') onClose();
     },

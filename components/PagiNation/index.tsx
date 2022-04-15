@@ -18,17 +18,17 @@ const PagiNation = ({
   // const groupId = Math.ceil(page / limit); // 1, 10page => 1, 11page => 2
   // const restPage = totalPage % 10; // 4
 
-  const handlePrevSetPage = () => {
+  const handlePrevSetPage = useCallback(() => {
     if (page !== 1) {
       onClickPagiNation(page - 1);
     }
-  };
+  }, [onClickPagiNation, page]);
 
-  const handleNextSetPage = () => {
+  const handleNextSetPage = useCallback(() => {
     if (page !== totalPage) {
       onClickPagiNation(page + 1);
     }
-  };
+  }, [onClickPagiNation, page, totalPage]);
 
   const initPageIndex = useCallback(() => {
     if (page % limit !== 0) {
