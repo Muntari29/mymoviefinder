@@ -2,6 +2,7 @@ import { ICommonView } from 'types/interfaces/common';
 import movieLogo from '@/public/movieLogo.png';
 import style from './index.module.scss';
 import Image from 'next/image';
+import React from 'react';
 
 const CommonView = ({ src = movieLogo, width, height, text }: ICommonView) => {
   return (
@@ -12,4 +13,4 @@ const CommonView = ({ src = movieLogo, width, height, text }: ICommonView) => {
   );
 };
 
-export default CommonView;
+export default React.memo(CommonView);

@@ -9,6 +9,7 @@ import { ISearchInput } from 'types/interfaces/common';
 import style from './index.module.scss';
 import { useRouter } from 'next/router';
 import MOVIELIST from './MOVIELIST';
+import React from 'react';
 
 const SearchInput = ({ onSubmit }: ISearchInput) => {
   const [userInput, setUserInput] = useState('');
@@ -56,4 +57,4 @@ const SearchInput = ({ onSubmit }: ISearchInput) => {
   );
 };
 
-export default SearchInput;
+export default React.memo(SearchInput);

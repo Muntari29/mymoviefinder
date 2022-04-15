@@ -1,3 +1,4 @@
+import React from 'react';
 import style from './index.module.scss';
 
 const SelectBox = () => {
@@ -15,4 +16,4 @@ const SelectBox = () => {
   );
 };
 
-export default SelectBox;
+export default React.memo(SelectBox);
