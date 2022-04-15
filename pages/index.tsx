@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import { ImovieData } from 'types/interfaces/movies';
 import { getSearchMovieData } from './api/movie';
 
-const Home = (): JSX.Element => {
+const Home = () => {
   const [seletedMovieId, setSeletedMovieId] = useState<string | null>(null);
   const [movieTitle, setMovieTitle] = useState<string>('');
   const [isShowModal, setIsShowModal] = useState(false);

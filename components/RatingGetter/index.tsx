@@ -1,7 +1,7 @@
 import { IRatingGetter } from 'types/interfaces/movies';
 import styled from '@emotion/styled';
 
-const RatingGetter = ({ rating }: IRatingGetter): JSX.Element => {
+const RatingGetter = ({ rating }: IRatingGetter) => {
   return (
     <StarWrapper>
       <BasicStar>

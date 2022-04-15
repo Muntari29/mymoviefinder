@@ -6,7 +6,7 @@ import RatingGetter from '../RatingGetter';
 import { IgetOneMovieData, IMovieModal } from 'types/interfaces/movies';
 import Spinner from '../Spinner';
 
-const MovieModal = ({ seletedMovieId, onClose }: IMovieModal): JSX.Element => {
+const MovieModal = ({ seletedMovieId, onClose }: IMovieModal) => {
   const [getOneMovieData, setGetOneMovieData] =
     useState<IgetOneMovieData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
