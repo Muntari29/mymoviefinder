@@ -1,6 +1,5 @@
 # 🍿 오픈 API를 활용한 나만의 영화 검색 사이트 만들기
 
-
 ### 이전 Vue 과제를 React + Next.JS로!! 현재 진행 중인 프로젝트로 Status 는 미완성 상태이며 :construction_worker: 계속 업데이트 중 입니다.
 
 ## ✅ 프로젝트 환경 & 실행
