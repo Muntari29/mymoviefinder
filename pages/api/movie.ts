@@ -1,21 +1,15 @@
-import axios from 'axios';
 import { IgetOneMovieData, IGetResponse } from 'types/interfaces/movies';
+import apiRequest from '.';
 
-const API_END_POINT = process.env.NEXT_PUBLIC_API_END_POINT;
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-
-const axiosInstance = axios.create({
-  timeout: 3000,
-  method: 'GET',
-});
 
 export const getSearchMovieData = async (
   title: string,
   page: number = 1
 ): Promise<IGetResponse | undefined> => {
   try {
-    const res = await axiosInstance({
-      url: `${API_END_POINT}?apikey=${API_KEY}&s=${title}&page=${page}`,
+    const res = await apiRequest.getAll(`?apikey=${API_KEY}`, {
+      params: { s: title, page },
     });
     if (res.status === 200) return res.data;
   } catch (e) {
@@ -27,8 +21,8 @@ export const getDetailMovieData = async (
   movieId: string
 ): Promise<IgetOneMovieData | undefined> => {
   try {
-    const res = await axiosInstance({
-      url: `${API_END_POINT}?apikey=${API_KEY}&i=${movieId}&plot=short`,
+    const res = await apiRequest.getDetail(`?apikey=${API_KEY}`, {
+      params: { i: movieId, plot: 'short' },
     });
     if (res.status === 200) return res.data;
   } catch (e) {
