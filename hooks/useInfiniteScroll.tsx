@@ -29,10 +29,11 @@ const useInfiniteScroll = ({ movieTitle, posts }: any) => {
   const getNextPageMoiveData = useCallback(async () => {
     if (movieTitle) {
       const res = await getSearchMovieData(movieTitle, nextPage.current);
-      console.log(res);
-      if (res) {
+      if (res?.Response === 'True') {
         setPostList((prev: ImovieData[]) => [...prev, ...res.Search]);
         nextPage.current += 1;
+      } else {
+        alert(`더 이상 ${movieTitle}에 대한 검색결과가 존재하지 않습니다.`);
       }
     }
   }, [movieTitle]);
