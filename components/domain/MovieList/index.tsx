@@ -6,6 +6,7 @@ import Image from 'next/image';
 import PagiNation from '@/components/PagiNation';
 import MUIPagiNation from '@/components/MUIPagiNation';
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
+import ScrollTopButton from '@/components/ScrollTopButton';
 
 const MovieList = ({
   posts,
@@ -19,31 +20,34 @@ const MovieList = ({
   return (
     <>
       {postList ? (
-        <main className={style.container} ref={containerRef}>
-          {postList.map(({ Title, Year, imdbID, Poster }, idx) => (
-            <div
-              className={style.item}
-              key={imdbID + idx}
-              onClick={() => onClickModalHanlder(imdbID)}
-            >
-              <Image
-                src={
-                  Poster !== 'N/A'
-                    ? Poster
-                    : 'https://cdn.pixabay.com/photo/2021/08/21/08/09/ban-6562104_640.png'
-                }
-                alt="Image..."
-                width={300}
-                height={400}
-                objectFit="fill"
-              />
-              <div className={style.description}>
-                <div className={style.title}>{Title}</div>
-                <div className={style.year}>@{Year}</div>
+        <>
+          <main className={style.container} ref={containerRef}>
+            {postList.map(({ Title, Year, imdbID, Poster }, idx) => (
+              <div
+                className={style.item}
+                key={imdbID + idx}
+                onClick={() => onClickModalHanlder(imdbID)}
+              >
+                <Image
+                  src={
+                    Poster !== 'N/A'
+                      ? Poster
+                      : 'https://cdn.pixabay.com/photo/2021/08/21/08/09/ban-6562104_640.png'
+                  }
+                  alt="Image..."
+                  width={300}
+                  height={400}
+                  objectFit="fill"
+                />
+                <div className={style.description}>
+                  <div className={style.title}>{Title}</div>
+                  <div className={style.year}>@{Year}</div>
+                </div>
               </div>
-            </div>
-          ))}
-        </main>
+            ))}
+          </main>
+          <ScrollTopButton />
+        </>
       ) : (
         <CommonView
           src={empty}
