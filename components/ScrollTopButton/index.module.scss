@@ -1,0 +1,14 @@
+@import '@/utils/constants/_colors.scss';
+@import '@/utils/constants/_mixin.scss';
+
+.wrapper {
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  position: fixed;
+  bottom: 0px;
+  z-index: 99;
+  left: 50%;
+  cursor: pointer;
+}
