@@ -16,7 +16,6 @@ const MovieList = ({
   movieTitle,
 }: IMovieList) => {
   const { containerRef, postList } = useInfiniteScroll({ movieTitle, posts });
-  console.log(3333, postList);
   return (
     <>
       {postList ? (

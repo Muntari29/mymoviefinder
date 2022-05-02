@@ -1,5 +1,4 @@
 import { getSearchMovieData } from '@/pages/api/movie';
-import Debounce from '@/utils/Debounce';
 import {
   MutableRefObject,
   useCallback,
@@ -12,17 +11,14 @@ import { ImovieData } from 'types/interfaces/movies';
 const useInfiniteScroll = ({ movieTitle, posts }: any) => {
   const containerRef: MutableRefObject<HTMLDivElement | null> =
     useRef<HTMLDivElement>(null);
-  const [page, setPage] = useState(2);
-  const [res, setRes] = useState<ImovieData[]>(posts);
+  const nextPage = useRef<number>(2);
+  const [postList, setPostList] = useState<ImovieData[]>(posts);
 
   const observer: IntersectionObserver = new IntersectionObserver(
     (entries, observer) => {
       //배열 내의 데이터에는 isIntersecting이라는 프로퍼티를 통해 화면에 노출되었는지를 확인
-      console.log('처음로드될떄 같이 로드됨2');
-      console.log(entries);
       if (!entries[0].isIntersecting) return;
-      api();
-      console.log('22222');
+      getNextPageMoiveData();
       observer.disconnect();
     },
     {
@@ -30,46 +26,35 @@ const useInfiniteScroll = ({ movieTitle, posts }: any) => {
     }
   );
 
-  const api = useCallback(async () => {
-    console.log('api');
+  const getNextPageMoiveData = useCallback(async () => {
     if (movieTitle) {
-      const res = await getSearchMovieData(movieTitle, page);
+      const res = await getSearchMovieData(movieTitle, nextPage.current);
+      console.log(res);
       if (res) {
-        console.log('res', 'api');
-        setRes((prev: any) => [...prev, ...res.Search]);
-        console.log(page, 92929);
+        setPostList((prev: ImovieData[]) => [...prev, ...res.Search]);
+        nextPage.current += 1;
       }
     }
-  }, [movieTitle, page]);
-
-  useEffect(() => {
-    setPage((prev) => prev + 1);
-  }, [res]);
-
-  // useEffect(() => {
-  //   console.log('useEffect');
-  //   if (page !== 1) Debounce(api, 1000);
-  // }, [api, page]);
+  }, [movieTitle]);
 
   useEffect(() => {
     if (
-      // page === 1 ||
       containerRef.current === null ||
       containerRef.current.children.length === 0
-    ) {
-      console.log('3333333');
+    )
       return;
-    }
-    console.log('처음 로드 될떄1');
-    console.log(containerRef.current.children);
+
+    // 관측할 요소로 해당 데이터의 가장 마지막 요소를 관측하는 것으로 갱신함.
+    // 이로인해 별도 하단 div 사용하지 않고도 구현할 수 있게됨.
     observer.observe(
       containerRef.current.children[containerRef.current.children.length - 1]
     );
-  }, [res]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [postList]);
 
   return {
     containerRef,
-    postList: res,
+    postList,
   };
 };
 
