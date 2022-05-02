@@ -1,10 +1,11 @@
 import CommonView from '@/components/CommonView';
-import { IMovieList } from 'types/interfaces/movies';
+import { IMovieList, ImovieData } from 'types/interfaces/movies';
 import style from './index.module.scss';
 import empty from '@/public/empty.png';
 import Image from 'next/image';
 import PagiNation from '@/components/PagiNation';
 import MUIPagiNation from '@/components/MUIPagiNation';
+import useInfiniteScroll from 'hooks/useInfiniteScroll';
 
 const MovieList = ({
   posts,
@@ -12,15 +13,18 @@ const MovieList = ({
   totalLength,
   onClickPagiNation,
   onClickModalHanlder,
+  movieTitle,
 }: IMovieList) => {
+  const { containerRef, postList } = useInfiniteScroll({ movieTitle, posts });
+  console.log(3333, postList);
   return (
     <>
-      {posts ? (
-        <main className={style.container}>
-          {posts.map(({ Title, Year, imdbID, Poster }) => (
+      {postList ? (
+        <main className={style.container} ref={containerRef}>
+          {postList.map(({ Title, Year, imdbID, Poster }, idx) => (
             <div
               className={style.item}
-              key={imdbID}
+              key={imdbID + idx}
               onClick={() => onClickModalHanlder(imdbID)}
             >
               <Image
@@ -49,7 +53,7 @@ const MovieList = ({
           text={'검색 결과가 없습니다.'}
         />
       )}
-      {totalLength ? (
+      {/* {totalLength ? (
         <MUIPagiNation
           totalLength={totalLength}
           page={page}
@@ -64,7 +68,7 @@ const MovieList = ({
         //   limit={limit}
         // />
         <></>
-      )}
+      )} */}
     </>
   );
 };

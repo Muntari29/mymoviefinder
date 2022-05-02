@@ -4,6 +4,7 @@ export interface IMovieList {
   totalLength: number;
   onClickModalHanlder: (movieId: string) => void;
   onClickPagiNation: (pageNumber: number) => void;
+  movieTitle: string;
 }
 
 export interface ImovieData {

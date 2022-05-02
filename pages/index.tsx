@@ -75,6 +75,7 @@ const Home = () => {
             totalLength={totalLength}
             onClickModalHanlder={openModal}
             onClickPagiNation={onClickGetDetailAPI}
+            movieTitle={movieTitle}
           />
         ) : (
           <CommonView width={80} height={80} text={'영화를 검색해주세요!'} />
